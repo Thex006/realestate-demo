@@ -25,12 +25,12 @@ export default async function AgentPage({ params }: Props) {
     <div className="wrap pt-10">
       <div className="grid gap-4 lg:grid-cols-12">
         <section className="tile enter grid gap-6 p-6 md:grid-cols-[auto_1fr] md:p-8 lg:col-span-8">
-          <div className="grid size-28 place-items-center rounded-2xl border border-border-strong bg-card-2 text-3xl font-semibold tracking-[-0.04em]" aria-hidden>
+          <div className="grid size-28 place-items-center display rounded-full border border-border-strong bg-card-2 text-5xl" aria-hidden>
             {initials(agent.name)}
           </div>
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.12em] text-accent">{agent.role}</p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">{agent.name}</h1>
+            <h1 className="display mt-3 text-6xl md:text-7xl">{agent.name}</h1>
             <p className="mt-4 max-w-xl leading-relaxed text-muted">{agent.bio}</p>
           </div>
         </section>
@@ -49,8 +49,8 @@ export default async function AgentPage({ params }: Props) {
       </div>
 
       <section className="mt-12" aria-labelledby="agent-listings">
-        <h2 id="agent-listings" className="mb-5 text-2xl font-semibold tracking-[-0.03em]">Letting now with {agent.name.split(" ")[0]}</h2>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 id="agent-listings" className="display mb-8 text-5xl">Letting now with {agent.name.split(" ")[0]}</h2>
+        <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {listings.map((l) => <li key={l.id}><ListingCard listing={l} /></li>)}
         </ul>
       </section>

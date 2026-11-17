@@ -13,7 +13,7 @@ export function CostBreakdown({ listing }: { listing: Listing }) {
   return (
     <div className="tile p-5" aria-labelledby="cost-h">
       <p id="cost-h" className="text-xs font-medium uppercase tracking-[0.08em] text-muted">Real monthly cost</p>
-      <p className="num mt-2 text-4xl font-semibold tracking-[-0.03em]" data-testid="total-cost">
+      <p className="display num mt-3 text-6xl text-accent" data-testid="total-cost">
         {formatHuf(c.total)}
         {c.partial && <span className="text-muted">+</span>}
       </p>

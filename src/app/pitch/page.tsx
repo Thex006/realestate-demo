@@ -24,7 +24,7 @@ export default async function PitchPage() {
   return (
     <div className="wrap pt-10">
       <p className="text-xs font-medium uppercase tracking-[0.14em] text-accent">Proposal for {agency.name} · by {STUDIO_NAME}</p>
-      <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-[-0.04em] md:text-6xl">
+      <h1 className="display mt-4 max-w-5xl text-6xl md:text-8xl">
         {new Date().getFullYear() - agency.founded} years of downtown know-how deserve a website that sells it.
       </h1>
       <p className="mt-5 max-w-2xl text-lg text-muted">

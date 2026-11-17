@@ -53,7 +53,7 @@ export default async function ListingPage({ params }: Props) {
       {/* Bento: photo | title + cost, then facts | form */}
       <div className="grid gap-4 lg:grid-cols-12">
         <div className="tile enter lg:col-span-8">
-          <ListingPhoto src={listing.imageUrl} alt={listing.title} district={listing.district} className="aspect-[16/10] h-full" priority />
+          <ListingPhoto src={listing.imageUrl} alt={listing.title} seed={listing.slug} className="aspect-[16/10] h-full" priority />
           <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-xs font-medium ${listing.availableNow ? "bg-accent text-accent-ink" : "bg-background/80 backdrop-blur"}`}>
             {availabilityLabel(listing)}
           </span>
@@ -64,7 +64,7 @@ export default async function ListingPage({ params }: Props) {
             <p className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.1em] text-accent">
               <MapPin className="size-3.5" /> {districtLabel(listing.district)} · {listing.neighbourhood}
             </p>
-            <h1 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em] md:text-[28px]">{listing.title}</h1>
+            <h1 className="display mt-4 text-[40px] md:text-[46px]">{listing.title}</h1>
             <p className="mt-2 text-sm text-muted">{listing.street}, Budapest {listing.district}.</p>
             <div className="num mt-5 grid grid-cols-3 gap-2 border-t border-border pt-4 text-center">
               <Stat k="m²" v={String(listing.sizeM2)} />
@@ -78,7 +78,7 @@ export default async function ListingPage({ params }: Props) {
         </div>
 
         <section className="tile p-5 lg:col-span-7" aria-labelledby="about-h">
-          <h2 id="about-h" className="text-lg font-semibold tracking-[-0.02em]">About this flat</h2>
+          <h2 id="about-h" className="display text-4xl">About this flat</h2>
           <p className="mt-2 leading-relaxed text-muted">{listing.summary}</p>
           <ul className="mt-5 grid gap-2 sm:grid-cols-2">
             {listing.highlights.map((h) => (
@@ -134,10 +134,10 @@ export default async function ListingPage({ params }: Props) {
 
       {similar.length > 0 && (
         <section className="mt-16" aria-labelledby="similar-h">
-          <h2 id="similar-h" className="mb-5 text-2xl font-semibold tracking-[-0.03em]">
+          <h2 id="similar-h" className="display mb-8 text-5xl">
             Also worth a look{sameArea.length > 1 ? ` in District ${listing.district}` : ""}
           </h2>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {similar.map((l) => (
               <li key={l.id}><ListingCard listing={l} /></li>
             ))}

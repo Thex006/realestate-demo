@@ -4,12 +4,12 @@
 
 /* Palette: lacquer black + Budapest tram yellow. One accent, used sparingly. */
 :root {
-  --background: #08090b;
-  --foreground: #f5f5f2;
-  --card: #0f1013;
-  --card-2: #15171b;
-  --muted: #a6a9ae;
-  --muted-2: #8a8e95;
+  --background: #0a0908;
+  --foreground: #f3eee4;
+  --card: #121110;
+  --card-2: #1a1816;
+  --muted: #aaa49a;
+  --muted-2: #8f897f;
   --border: rgb(255 255 255 / 0.08);
   --border-strong: rgb(255 255 255 / 0.16);
   --accent: #ffd200;
@@ -37,6 +37,7 @@
   --radius-lg: var(--radius);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
 }
 
 html {
@@ -79,6 +80,28 @@ p { text-wrap: pretty; }
 }
 
 .num { font-variant-numeric: tabular-nums; }
+
+/* Editorial display face: big, light, tight. Italic for the one emphasised word. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.display em { font-style: italic; color: var(--accent); }
+
+/* Hairline label above a heading */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent); }
 }
 
 /* Entrance: CSS so content is never hidden if scripts fail. */

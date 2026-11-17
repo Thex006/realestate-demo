@@ -95,7 +95,7 @@ export function OwnerForm({ comps }: { comps: Comp[] }) {
       <div className="tile flex flex-col justify-between gap-6 p-5 lg:col-span-5" aria-live="polite">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.08em] text-muted">Estimated monthly rent</p>
-          <p className="num mt-3 text-5xl font-semibold tracking-[-0.04em] text-accent" data-testid="estimate-mid">{formatHuf(est.mid)}</p>
+          <p className="display num mt-4 text-7xl text-accent md:text-8xl" data-testid="estimate-mid">{formatHuf(est.mid)}</p>
           <p className="num mt-1 text-sm text-muted">{formatEurApprox(est.mid)} · range {formatHuf(est.low)} to {formatHuf(est.high)}</p>
         </div>
         <div className="space-y-2 border-t border-border pt-4 text-xs text-muted-2">

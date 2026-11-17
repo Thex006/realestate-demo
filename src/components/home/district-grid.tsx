@@ -18,7 +18,7 @@ export function DistrictGrid({ listings }: { listings: Listing[] }) {
             className="group flex aspect-square flex-col justify-between rounded-xl border border-border bg-card-2 p-3 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-accent/60"
           >
             <span className="flex items-start justify-between">
-              <span className="text-2xl font-semibold tracking-[-0.04em] group-hover:text-accent">{d}</span>
+              <span className="display text-4xl group-hover:text-accent">{d}</span>
               {focus.has(d) && <span className="mt-1.5 size-1.5 rounded-full bg-accent" aria-label="Focus district" />}
             </span>
             <span className="num text-[11px] leading-tight text-muted">
@@ -35,7 +35,7 @@ export function DistrictGrid({ listings }: { listings: Listing[] }) {
             href="/rentals"
             className="group flex aspect-square flex-col justify-between rounded-xl border border-dashed border-border-strong p-3 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-accent/60"
           >
-            <span className="text-2xl font-semibold tracking-[-0.04em] group-hover:text-accent">All</span>
+            <span className="display text-4xl group-hover:text-accent">All</span>
             <span className="num text-[11px] leading-tight text-muted">{listings.length} flats<br />every district</span>
           </Link>
         </li>

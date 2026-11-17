@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import { Nav } from "@/components/site/nav";
 import { Footer } from "@/components/site/footer";
 import { ConceptRibbon } from "@/components/site/concept-ribbon";
+import "@fontsource/instrument-serif/latin-400.css";
+import "@fontsource/instrument-serif/latin-400-italic.css";
 import "./globals.css";
 
 export const metadata: Metadata = {

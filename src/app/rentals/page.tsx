@@ -24,9 +24,9 @@ export default async function RentalsPage({ searchParams }: { searchParams: Prom
     <div className="wrap pt-10">
       <header className="enter mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.12em] text-accent">Long-term rentals</p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
-            {all.length} Budapest flats. Every cost on the card.
+          <p className="eyebrow">Long-term rentals</p>
+          <h1 className="display mt-4 text-6xl md:text-8xl">
+            {all.length} flats. <em>Every</em> cost on the card.
           </h1>
         </div>
         <p className="max-w-sm text-sm text-muted">Rent plus common charge plus average bills, added up for you. No surprises at the viewing, none at signing.</p>
@@ -43,7 +43,7 @@ export default async function RentalsPage({ searchParams }: { searchParams: Prom
       </div>
 
       {results.length ? (
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((l, i) => (
             <li key={l.id}>
               <ListingCard listing={l} priority={i < 3} />

@@ -3,37 +3,44 @@ import { ArrowUpRight } from "lucide-react";
 import type { Listing } from "@/lib/types";
 import { monthlyCost } from "@/lib/cost";
 import { availabilityLabel, formatHuf, furnishedLabel, roomsLabel } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import { ListingPhoto } from "./listing-photo";
 
-export function ListingCard({ listing, priority = false }: { listing: Listing; priority?: boolean }) {
+export function ListingCard({ listing, priority = false, tall = false }: { listing: Listing; priority?: boolean; tall?: boolean }) {
   const cost = monthlyCost(listing);
   return (
     <Link
       href={`/rentals/${listing.slug}`}
-      className="tile group flex h-full flex-col transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-border-strong"
+      className="group flex h-full flex-col gap-4 rounded-[var(--radius)] transition-transform duration-300 hover:-translate-y-0.5"
       data-testid="listing-card"
     >
-      <ListingPhoto src={listing.imageUrl} alt={listing.title} district={listing.district} className="aspect-[4/3]" priority={priority} />
-      <span className="absolute left-3 top-3 rounded-full bg-background/80 px-2.5 py-1 text-[11px] font-medium backdrop-blur">
-        {listing.district} · {listing.neighbourhood}
-      </span>
-      <div className="flex flex-1 flex-col gap-3 p-4">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="text-[15px] font-medium leading-snug">{listing.title}</h3>
-          <ArrowUpRight className="mt-0.5 size-4 shrink-0 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
-        </div>
-        <p className="text-xs text-muted">
-          {listing.street} · {listing.sizeM2} m² · {roomsLabel(listing)} · {furnishedLabel[listing.furnished]}
-        </p>
-        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-3">
+      <div className="relative overflow-hidden rounded-[var(--radius)] border border-border">
+        <ListingPhoto src={listing.imageUrl} alt={listing.title} seed={listing.slug} className={cn(tall ? "aspect-[4/5]" : "aspect-[5/4]")} priority={priority} />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent" aria-hidden />
+        <span className="absolute left-3 top-3 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-md">
+          {listing.district} · {listing.neighbourhood}
+        </span>
+        {listing.availableNow && (
+          <span className="absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-ink">Ready now</span>
+        )}
+        <div className="absolute inset-x-3 bottom-3 flex items-end justify-between gap-3 text-white">
           <div>
-            <p className="num text-lg font-semibold tracking-[-0.02em]">{formatHuf(listing.rentHuf)}</p>
-            <p className="num text-[11px] text-muted-2">
-              {cost.total > cost.rent ? `${formatHuf(cost.total)}${cost.partial ? "+" : ""} with fees` : "fees on request"}
+            <p className="num text-xl font-semibold tracking-[-0.02em]">{formatHuf(listing.rentHuf)}</p>
+            <p className="num text-[11px] text-white/70">
+              {cost.total > cost.rent ? `${formatHuf(cost.total)}${cost.partial ? "+" : ""} all-in` : "fees on request"}
             </p>
           </div>
-          <span className={`text-[11px] ${listing.availableNow ? "text-ok" : "text-muted"}`}>{availabilityLabel(listing)}</span>
+          <span className="grid size-9 place-items-center rounded-full bg-white/10 backdrop-blur-md transition-colors group-hover:bg-accent group-hover:text-accent-ink">
+            <ArrowUpRight className="size-4" />
+          </span>
         </div>
+      </div>
+      <div className="px-1">
+        <h3 className="display text-[26px] leading-[1.05] transition-colors group-hover:text-accent">{listing.title}</h3>
+        <p className="mt-2 text-xs text-muted">
+          {listing.street} · {listing.sizeM2} m² · {roomsLabel(listing)} · {furnishedLabel[listing.furnished]}
+          {!listing.availableNow && ` · ${availabilityLabel(listing)}`}
+        </p>
       </div>
     </Link>
   );
