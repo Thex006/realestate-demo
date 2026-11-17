@@ -157,7 +157,7 @@ export default async function Home() {
           <div className="relative p-8 md:p-12">
             <p className="eyebrow">For owners</p>
             <h2 id="own-h" className="heading-2 mt-6">What is your home <em>worth</em> today?</h2>
-            <p className="mt-4 max-w-md text-muted">Get a live estimate in seconds, calculated from the {all.length} homes this agency is marketing now. Then ask for a free valuation from someone who has walked through them.</p>
+            <p className="mt-4 max-w-md text-muted">Get a live estimate in seconds, calculated from the {all.length} homes this agency is marketing now. Then ask the team that markets them for a free valuation.</p>
             <ul className="mt-8 grid gap-3 body-6 sm:grid-cols-2">
               {agency.ownerServices.map((s) => (
                 <li key={s.title} className="border-t border-border pt-3"><span className="text-foreground">{s.title}</span><span className="mt-1 block caption-5 text-muted-2">{s.body.split(",")[0]}.</span></li>

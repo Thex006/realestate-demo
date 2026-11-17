@@ -40,8 +40,9 @@ describe("format", () => {
     expect(bedsLabel(0)).toBe("Studio");
     expect(bedsLabel(2)).toBe("2 beds");
     expect(districtNumber("XII")).toBe(12);
-    expect(headline({ type: "apartment", bedrooms: 3, view: "Panoramic", sizeM2: 126 })).toBe("3-bedroom apartment with panoramic view, 126 m²");
+    expect(headline({ type: "apartment", bedrooms: 3, view: "Panoramic", sizeM2: 126 })).toBe("3 bedroom apartment with panoramic view, 126 m²");
     expect(headline({ type: "house", bedrooms: 0, view: "Street", sizeM2: 300 })).toBe("house, 300 m²");
+    expect(headline({ type: "house", bedrooms: 6, view: "Buda Hills", sizeM2: 290 })).toBe("6 bedroom house with Buda Hills view, 290 m²");
   });
 });
 

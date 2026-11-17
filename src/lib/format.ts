@@ -16,7 +16,8 @@ export const districtNumber = (r: string) => ROMAN[r] ?? 0;
 
 /** A plain-language headline from the listing's own facts. */
 export function headline(l: Pick<Listing, "type" | "bedrooms" | "view" | "sizeM2">): string {
-  const view = l.view && !["Street", "Courtyard"].includes(l.view) ? ` with ${l.view === "River Danube" ? "Danube" : l.view.toLowerCase()} view` : "";
+  const name = l.view === "River Danube" ? "Danube" : l.view === "Buda Hills" ? "Buda Hills" : l.view?.toLowerCase();
+  const view = l.view && !["Street", "Courtyard"].includes(l.view) ? ` with ${name} view` : "";
   const what = l.type === "house" ? "house" : l.bedrooms === 0 ? "studio" : "apartment";
-  return `${l.bedrooms ? `${l.bedrooms}-bedroom ` : ""}${what}${view}, ${l.sizeM2} m²`;
+  return `${l.bedrooms ? `${l.bedrooms} bedroom ` : ""}${what}${view}, ${l.sizeM2} m²`;
 }
