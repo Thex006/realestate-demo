@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Palette: lacquer black + Budapest tram yellow. One accent, used sparingly. */
+:root {
+  --background: #0a0908;
+  --foreground: #f3eee4;
+  --card: #121110;
+  --card-2: #1a1816;
+  --muted: #aaa49a;
+  --muted-2: #8f897f;
+  --border: rgb(255 255 255 / 0.08);
+  --border-strong: rgb(255 255 255 / 0.16);
+  --accent: #ffd200;
+  --accent-ink: #141100;
+  --danger: #ff6b5b;
+  --ok: #7ee2a8;
+  --ring: rgb(255 210 0 / 0.5);
+  --radius: 18px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-2: var(--card-2);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-danger: var(--danger);
+  --color-ok: var(--ok);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@layer components {
+.wrap {
+  width: min(1240px, 100% - 2 * clamp(16px, 4vw, 48px));
+  margin-inline: auto;
+}
+
+/* Bento tile: one surface, one border, one radius everywhere. */
+.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.num { font-variant-numeric: tabular-nums; }
+
+/* Editorial display face: big, light, tight. Italic for the one emphasised word. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+.display em { font-style: italic; color: var(--accent); }
+
+/* Hairline label above a heading */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--accent); }
+}
+
+/* Entrance: CSS so content is never hidden if scripts fail. */
+@keyframes enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+.enter {
+  animation: enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .enter { animation: none; }
+}
