@@ -97,11 +97,11 @@ describe("lead scoring", () => {
     expect(s.score).toBeLessThanOrEqual(100);
   });
   it("rates a browsing, email-only visitor cold", () => {
-    expect(scoreViewing({ timing: "browsing", budgetEur: 500, relocating: false }, { kind: "rent", priceEur: 2800 }).tier).toBe("cold");
+    expect(scoreViewing({ timing: "browsing", budgetEur: 500, phone: undefined, relocating: false }, { kind: "rent", priceEur: 2800 }).tier).toBe("cold");
   });
   it("scores owners by readiness and district", () => {
     const hot = scoreValuation({ goal: "rent", district: "V", sizeM2: 130, readiness: "now", wantsManagement: true, phone: "+3612345678", view: "premium" });
-    const cold = scoreValuation({ goal: "rent", district: "XIV", sizeM2: 40, readiness: "exploring", wantsManagement: false, view: "standard" });
+    const cold = scoreValuation({ goal: "rent", district: "XIV", sizeM2: 40, readiness: "exploring", wantsManagement: false, phone: undefined, view: "standard" });
     expect(hot.tier).toBe("hot");
     expect(cold.tier).toBe("cold");
   });
