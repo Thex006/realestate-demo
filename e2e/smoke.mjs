@@ -94,6 +94,14 @@ const r = await browser.newPage({ reducedMotion: "reduce" });
 await r.goto(BASE, { waitUntil: "networkidle" });
 check("reduced motion: tagline fully visible", (await r.locator(".tag-word").first().evaluate((el) => getComputedStyle(el).opacity)) === "1");
 
+// 3D walkthrough renders when WebGL is available (software GL in CI)
+const gl = await chromium.launch({ args: ["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"] });
+const g = await gl.newPage({ viewport: { width: 1280, height: 800 } });
+g.on("pageerror", (e) => errors.push(e.message));
+await g.goto(BASE, { waitUntil: "networkidle" });
+check("3D walkthrough canvas", await visible(g.locator('[aria-label="Walk through a Budapest villa"] canvas')));
+await gl.close();
+
 check("no page errors", errors.length === 0, errors.slice(0, 3).join(" | "));
 await browser.close();
 console.log(failed ? `\n${failed} check(s) failed` : "\nAll checks passed");

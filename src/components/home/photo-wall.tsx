@@ -33,7 +33,7 @@ export function PhotoWall({ tiles, children }: { tiles: Tile[]; children: React.
             ))}
           </motion.div>
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/45" aria-hidden />
+        <div className="pointer-events-none absolute inset-0 bg-black/25" aria-hidden />
         <div className="relative grid h-full place-items-center px-4 text-center">
           <div className="rounded-2xl border border-border bg-black/70 px-6 py-12 backdrop-blur-xl md:px-16">{children}</div>
         </div>

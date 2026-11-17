@@ -17,13 +17,12 @@ export function ListingCard({ listing, size = "md", priority = false }: { listin
           {a && <Photo src={a} alt={`${listing.street}, District ${listing.district}`} priority={priority} />}
           {b && <Photo src={b} alt="" className="opacity-0 transition-opacity duration-700 group-hover:opacity-100" />}
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-black/25" aria-hidden />
         <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-2 caption-3 tracking-[0.08em] text-white">
           <span className="rounded-full bg-black/45 px-3 py-1 backdrop-blur-md">DISTRICT {listing.district}</span>
           <span className="num rounded-full bg-black/45 px-3 py-1 backdrop-blur-md">{listing.photos.length} PHOTOS</span>
         </div>
-        <div className="absolute inset-x-4 bottom-4 text-white">
-          <p className="num heading-6">
+        <div className="absolute bottom-4 left-4 rounded-full bg-black/55 px-3 py-1 text-white backdrop-blur-md">
+          <p className="num title-2">
             {formatEur(listing.priceEur)}
             {listing.kind === "rent" && <span className="body-6 text-white/70"> / month</span>}
           </p>

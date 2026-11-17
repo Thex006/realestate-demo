@@ -4,7 +4,7 @@ import { agency, testimonials } from "@/data/agency";
 import { allListings, getAgents } from "@/lib/db";
 import { formatEur, formatEurShort } from "@/lib/format";
 import type { Listing } from "@/lib/types";
-import { Hero } from "@/components/home/hero";
+import { Walkthrough, type Chapter } from "@/components/home/walkthrough";
 import { PhotoWall } from "@/components/home/photo-wall";
 import { Rail } from "@/components/home/rail";
 import { ServicesStory } from "@/components/home/services-story";
@@ -44,6 +44,18 @@ export default async function Home() {
     collection("Hegyvidék", "District XII, green Buda hills, to rent", "rent", (l) => l.district === "XII", "district=XII", "md:col-span-3"),
   ];
 
+  // Walkthrough chapters: every number comes from the live listings.
+  const houses = all.filter((l) => l.type === "house");
+  const panoramic = all.filter((l) => l.view === "Panoramic" || l.view === "River Danube" || l.view === "Buda Hills");
+  const maxSize = Math.max(...all.map((l) => l.sizeM2));
+  const maxBeds = Math.max(...all.map((l) => l.bedrooms));
+  const chapters: Chapter[] = [
+    { at: 0.2, eyebrow: "Arrive", title: "Villas in the Buda hills", body: `${houses.length} houses and villas online right now, the largest at ${Math.max(...houses.map((l) => l.sizeM2))} m².`, href: "/buy?type=house", cta: "See houses for sale" },
+    { at: 0.4, eyebrow: "Step inside", title: "Room to actually live", body: `Open living floors, fireplaces and kitchens built for hosting, in homes up to ${maxSize} m².`, href: "/rent", cta: "Browse rentals" },
+    { at: 0.6, eyebrow: "Upstairs", title: `Up to ${maxBeds} bedrooms`, body: "Family homes with a bedroom for everyone, and a study for the one who works from home.", href: "/rent?beds=3", cta: "3+ bedrooms" },
+    { at: 0.86, eyebrow: "The view", title: "Budapest at your feet", body: `${panoramic.length} homes look out over the Danube, the city or the hills.`, href: "/buy?view=Panoramic", cta: "Homes with a view" },
+  ];
+
   const wall = all.filter((l) => l.slug !== hero.slug).slice(0, 25).map((l) => ({ src: l.photos[1] ?? l.photos[0], href: `/property/${l.slug}`, label: l.street }));
   const featuredRent = rent.slice(0, 5);
   const featuredSale = [...sale].sort((a, b) => b.priceEur - a.priceEur).filter((l) => l.slug !== hero.slug).slice(0, 8);
@@ -52,7 +64,7 @@ export default async function Home() {
 
   return (
     <>
-      <Hero photo={hero.photos[0]} caption={{ street: hero.street, href: `/property/${hero.slug}` }} rentCount={rent.length} saleCount={sale.length} />
+      <Walkthrough chapters={chapters} fallbackPhoto={hero.photos[0]} rentCount={rent.length} saleCount={sale.length} />
 
       {/* Proof bar: only numbers the agency publishes or that come from the live list. */}
       <section className="border-y border-border" aria-label="At a glance">
@@ -113,8 +125,8 @@ export default async function Home() {
                       <Photo src={pickPhoto(c.list, i)} alt="" />
                     </div>
                   </Parallax>
-                  <div className="absolute inset-0 bg-black/40" aria-hidden />
-                  <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4 text-white">
+                  
+                  <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-4 rounded-xl bg-black/55 p-4 text-white backdrop-blur-md">
                     <div>
                       <h3 className="heading-4">{c.title}</h3>
                       <p className="mt-1 caption-5 text-white/70">{c.sub}</p>
@@ -194,7 +206,7 @@ export default async function Home() {
               <Tilt max={5}>
                 <div className="group">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-card-2">
-                    <Photo src={a.photoUrl} alt={a.name} className="grayscale transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+                    <Photo src={a.photoUrl} alt={a.name} className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]" />
                   </div>
                   <p className="heading-4 mt-4">{a.name}</p>
                   <p className="mt-1 caption-5 text-muted">{a.role}</p>

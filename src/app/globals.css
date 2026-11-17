@@ -98,12 +98,6 @@ p { text-wrap: pretty; }
 @keyframes pushin { from { transform: scale(1.12); } to { transform: scale(1.0); } }
 .pushin { animation: pushin 14s cubic-bezier(0.2, 0.6, 0.2, 1) both; will-change: transform; }
 
-/* Film grain over everything: one static SVG noise tile, no animation cost. */
-body::after {
-  content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 /* Light beams: soft champagne shafts drifting across the hero (transform only). */
 .beam {
   position: absolute; top: -20%; height: 140%; width: 18%; pointer-events: none; mix-blend-mode: screen; filter: blur(28px);

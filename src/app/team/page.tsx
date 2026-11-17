@@ -27,7 +27,7 @@ export default async function TeamPage() {
             <Tilt max={5}>
               <article className="group">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-card-2">
-                  <Photo src={a.photoUrl} alt={a.name} className="grayscale transition-[filter,transform] duration-700 group-hover:scale-[1.03] group-hover:grayscale-0" />
+                  <Photo src={a.photoUrl} alt={a.name} className="transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]" />
                 </div>
                 <h2 className="heading-3 mt-6">{a.name}</h2>
                 <p className="mt-1 caption-5 uppercase tracking-[0.16em] text-accent">{a.role}</p>

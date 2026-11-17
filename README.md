@@ -42,7 +42,7 @@ Already cloned before? Skip the clone step and run `git pull` inside the folder 
 
 | Page | What it shows |
 |---|---|
-| `/` | Cinematic hero, word by word tagline, 3D photo wall, collections bento, pinned horizontal sale rail, services story, owners, real testimonials, team |
+| `/` | 3D villa walkthrough driven by scroll, word by word tagline, 3D photo wall, collections bento, pinned horizontal sale rail, services story, owners, real testimonials, team |
 | `/rent`, `/buy` | Filterable results. Every filter lives in the URL, so a shortlist can be shared |
 | `/property/[slug]` | Gallery with full screen lightbox, facts, features, agent card, viewing request |
 | `/owners` | Live valuation from the agency's own listings, then a valuation request |
@@ -61,6 +61,6 @@ End to end (with the site running on port 3000): `npm run test:e2e`. It needs `n
 
 ## Stack
 
-Next.js 15 (App Router), React 19, TypeScript, Tailwind v4, Radix, motion, Lenis smooth scroll, Phosphor icons, PostgreSQL through embedded PGlite (set `DATABASE_URL` to use a real Postgres instead), zod.
+Next.js 15 (App Router), React 19, TypeScript, Tailwind v4, Radix, motion, Lenis smooth scroll, three.js with React Three Fiber, Phosphor icons, PostgreSQL through embedded PGlite (set `DATABASE_URL` to use a real Postgres instead), zod.
 
 Design rules come from `.claude/skills/landing-page-design` (elayadesign/ai-design-skills, MIT). See `PRODUCT.md` for the page plan and the two deliberate exceptions.
